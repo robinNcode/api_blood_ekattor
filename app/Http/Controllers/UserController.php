@@ -36,9 +36,16 @@ class UserController extends Controller
      * @param  \App\Http\Requests\StoreBloodRequestRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($request)
+    public function store(Request $request)
     {
-        //
+        $user = User::create($request->all());
+
+        if($user == TRUE){
+            return response()->json(['message' => 'User created successfully'], 200);
+        }
+        else{
+            return response()->json(['message' => 'User could not be created'], 400);
+        }
     }
 
     /**

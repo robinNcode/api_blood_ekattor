@@ -8,4 +8,5 @@ Route::group(['namespace' => 'App\Http\Controllers'], function(){
     Route::apiResource('blood-requests', 'BloodRequestController');
     Route::apiResource('blood-donations', 'DonateController');
     Route::apiResource('profiles', 'ProfileController');
+    Route::post('login', 'AuthController@loginAttepmt');
 });

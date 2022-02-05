@@ -53,4 +53,8 @@ class User extends Authenticatable
     public function bloodDonations(){
         return $this->hasMany(Donate::class);
     }
+
+    public function getAllInformation($user_id){
+        return User::with('profiles')->find($user_id);
+    }
 }
