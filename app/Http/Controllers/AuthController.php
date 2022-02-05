@@ -18,24 +18,22 @@ class AuthController extends Controller
             $user_info = [
                 'user_id' => $user_details->id,
                 'name' => $user_details->profiles[0]->name,
+                'image' => $user_details->profiles[0]->image,
                 'email' => $user_details->profiles[0]->email,
                 'blood_group' => $user_details->profiles[0]->blood_group,
                 'phone' => $user_details->profiles[0]->phone,
                 'address' => $user_details->profiles[0]->address,
                 'district' => $user_details->profiles[0]->district,
-                'image' => $user_details->profiles[0]->image,
+                'thana' => $user_details->profiles[0]->thana,
             ];
 
             if($user == NULL){
                 return response()->json(['message' => 'Invalid email or password'], 400);
             }
             else{
-                return response()->json(['message' => 'Login successful', 'user_info' => $user_details], 200);
+                return response()->json(['message' => 'Login successful', 'user_info' => $user_info], 200);
             }
         }
     }
 
-    public function password_verify($password){
-
-    }
 }
