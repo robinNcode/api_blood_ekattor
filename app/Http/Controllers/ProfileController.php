@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Profile;
 use App\Http\Requests\StoreProfileRequest;
 use App\Http\Requests\UpdateProfileRequest;
-
+use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
     /**
@@ -23,9 +23,9 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -34,9 +34,25 @@ class ProfileController extends Controller
      * @param  \App\Http\Requests\StoreProfileRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProfileRequest $request)
+    public function store(Request $request)
     {
-        //
+        dd($request->all());
+        $request->validate([
+            'image' => 'mimes:png,jpg,jpeg',
+            'name' => 'required|string|max:255',
+        ]);
+
+        $profile = new Profile();
+
+        if($request->hasFile('image')){
+            $fileName = date('Y_m_d_Hi') . '_'. $request->image->getClientOriginalName();
+            $filePath = $request->image->storeAs('public/uploads', $fileName);
+            $request->image->move(public_path('uploads'), $fileName);
+            dd($filePath);
+        }
+
+
+
     }
 
     /**
