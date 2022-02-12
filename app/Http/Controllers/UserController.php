@@ -6,6 +6,7 @@ use App\Http\Requests\StoreBloodRequestRequest;
 use App\Http\Requests\UpdateBloodRequestRequest;
 use App\Models\BloodRequest;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -33,28 +34,28 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreBloodRequestRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return JsonResponse
      */
     public function store(Request $request)
     {
         $user = User::create($request->all());
 
         if($user == TRUE){
-            return response()->json(['message' => 'User created successfully'], 200);
+            return response()->json(['status' => 'success', 'message' => 'Registration Complete!'], 200);
         }
         else{
-            return response()->json(['message' => 'User could not be created'], 400);
+            return response()->json(['status' => 'error', 'message' => 'Please try again.'], 400);
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\BloodRequest  $bloodRequest
-     * @return \Illuminate\Http\Response
+     * @param $user_id
+     * @return void
      */
-    public function show($uesr_id)
+    public function show($user_id)
     {
         //
     }
