@@ -6,6 +6,7 @@ use App\Http\Requests\StoreBloodRequestRequest;
 use App\Http\Requests\UpdateBloodRequestRequest;
 use App\Models\BloodRequest;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -13,23 +14,13 @@ class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return User[]|\Illuminate\Database\Eloquent\Collection
+     * @return User[]|Collection
      */
     public function index()
     {
         return User::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -49,24 +40,14 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param $user_id
-     * @return void
-     */
-    public function show($user_id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\BloodRequest  $bloodRequest
-     * @return \Illuminate\Http\Response
+     * @param $user_id
+     * @return void
      */
-    public function edit($uesr_id)
+    public function edit($user_id)
     {
         //
     }
@@ -74,11 +55,10 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateBloodRequestRequest  $request
-     * @param  \App\Models\BloodRequest  $bloodRequest
-     * @return \Illuminate\Http\Response
+     * @param $user_id
+     * @return void
      */
-    public function update($uesr_id)
+    public function update($user_id)
     {
         //
     }
@@ -86,10 +66,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\BloodRequest  $bloodRequest
-     * @return \Illuminate\Http\Response
+     * @param $user_id
+     * @return void
      */
-    public function destroy($uesr_id)
+    public function destroy($user_id)
     {
         //
     }
