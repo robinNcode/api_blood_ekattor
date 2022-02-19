@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Profile;
 use App\Http\Requests\StoreProfileRequest;
 use App\Http\Requests\UpdateProfileRequest;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -34,24 +35,27 @@ class ProfileController extends Controller
     /**
      * Store a newly created resource in storage.
      * @param Request $request
-     * @return void
+     * @return JsonResponse
      */
     public function store(Request $request)
     {
-        dd($request->all());
-        $request->validate([
-            'image' => 'mimes:png,jpg,jpeg',
-            'name' => 'required|string|max:255',
-        ]);
-
-        $profile = new Profile();
-
-        if($request->hasFile('image')){
-            $fileName = date('Y_m_d_Hi') . '_'. $request->image->getClientOriginalName();
-            $filePath = $request->image->storeAs('public/uploads', $fileName);
-            $request->image->move(public_path('uploads'), $fileName);
-            dd($filePath);
+        //dd($request->all());
+        $profile = Profile::create($request->all());
+        if($profile == TRUE){
+            return response()->json(['status' => 'success', 'message' => 'Profile Updated!'], 200);
         }
+        else{
+            return response()->json(['status' => 'error', 'message' => 'Please try again.'], 400);
+        }
+
+//        $profile = new Profile();
+//
+//        if($request->hasFile('image')){
+//            $fileName = date('Y_m_d_Hi') . '_'. $request->image->getClientOriginalName();
+//            $filePath = $request->image->storeAs('public/uploads', $fileName);
+//            $request->image->move(public_path('uploads'), $fileName);
+//            dd($filePath);
+//        }
 
 
 

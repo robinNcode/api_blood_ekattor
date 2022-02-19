@@ -24,13 +24,13 @@ class AuthController extends Controller
                     'user_id' => $user_details->id,
                     'name' => $user_details->profiles[0]->name,
                     'image' => $user_details->profiles[0]->image,
-                    'email' => $user_details->profiles[0]->email,
                     'blood_group' => $user_details->profiles[0]->blood_group,
                     'phone' => $user_details->profiles[0]->phone,
                     'address' => $user_details->profiles[0]->address,
                     'district' => $user_details->profiles[0]->district,
                     'thana' => $user_details->profiles[0]->thana,
                 ];
+
                 return response()->json($user_info, 200);
             }
         }
