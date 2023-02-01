@@ -15,7 +15,7 @@ class AuthController extends Controller
             $user = User::where('email', $request->email)->where('password', $request->password)->first();
 
             if ($user == NULL) {
-                $user_info ['status'] = 'error';
+                $user_info['status'] = 'error';
                 return response()->json($user_info, 200);
             } else {
                 $user_details = User::getAllInformation($user->id);
